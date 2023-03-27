@@ -18,3 +18,32 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+ul {
+  padding-left: 20px;
+  list-style: none;
+   }
+
+li {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+img {
+  margin-right: 10px;
+  width: 60px;
+  height: 40px;
+}
+
+.field {
+  margin-left: 20px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 10px;
+}

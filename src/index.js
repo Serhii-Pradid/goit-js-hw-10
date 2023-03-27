@@ -13,8 +13,7 @@ const countryWrapperEl = document.querySelector('.country-info');
 searchForm.addEventListener('input' , debounce(onInputCountryName, DEBOUNCE_DELAY));
 
   function onInputCountryName(event) {
-      
-      const countryValue = event.target.value.trim();
+           const countryValue = event.target.value.trim();
       //console.log(countryValue)
   
   fetchCountries(countryValue)
@@ -25,7 +24,7 @@ searchForm.addEventListener('input' , debounce(onInputCountryName, DEBOUNCE_DELA
         );
         return;
     }
-createCounrtyList(country);
+createMarkup(country);
 })
 .catch(error => {
     Notify.failure("Oops, there is no country with that name")
@@ -33,13 +32,36 @@ createCounrtyList(country);
 })
 }
 
-const createCounrtyList = data => {
+function createMarkup(data) {
+if(data.length === 1) {
+    const markupInfo = createCountryInfo(data);
+    countryWrapperEl.innerHTML = markupInfo;     
+} else {
+    const markupList = createCounrtyList(data);
+    countryListEl.innerHTML = markupList;
+}
+};
+
+function createCounrtyList(data) {
     return data.map(
         ({ flags, name }) => 
-    `<li><img src="${flags.svg}" alt="${name.official}">${name.official}</li>`
+        `<li><img src="${flags.svg}" alt="${name.official}">${name.official}</li>`
     )
     .join("");
 };
 
+function createCountryInfo(data) {
+    return data.map(
+      ({ flags, name, capital, population, languages }) => 
+     `<div class = "field">
+     <h1>
+     <img src="${flags.svg}" alt="${name.official}">${name.official}
+     </h1>
+      <p><span class = "title">Capital:</span>${capital}</p>
+      <p><span class = "title">Population:</span>${population}</p>
+      <p><span class = "title">Languages:</span>${Object.values(languages)}</p>
+      </div>`
+    )
+};
 
-//const createCountryInfo
+
