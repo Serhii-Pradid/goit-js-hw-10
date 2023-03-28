@@ -8,15 +8,25 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
-  color: #212121;
+  background-image: url(../images/wallpapers.jpg);
+  background-position:  center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fafafa;
   line-height: 1.5;
+  min-height: 98vh;
 }
 
 #search-box {
-  font: inherit;
+  background: transparent;
   padding: 8px;
   max-width: 320px;
-  margin-bottom: 16px;
+  margin: 18px;
+  color: #fafafa;
+  font-size: 18px;
+  font-weight: 600;
+  border-color: #fafafa;
+  
 }
 
 ul {
