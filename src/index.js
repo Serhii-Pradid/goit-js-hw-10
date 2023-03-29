@@ -11,15 +11,20 @@ const countryWrapperEl = document.querySelector('.country-info');
 
 searchForm.addEventListener('input' , debounce(onInputCountryName, DEBOUNCE_DELAY));
 
+function clearMarkup() {
+    countryListEl.innerHTML = '';
+    countryWrapperEl.innerHTML = '';         
+  }
+
   function onInputCountryName(event) {
            const countryValue = event.target.value.trim();
+
+  clearMarkup();
+
+      if(!countryValue) {
+        return;
+        }
       
-      if(countryValue === '') {
-        countryListEl.innerHTML = '';
-        countryWrapperEl.innerHTML = '';
-      }
-    
-  
   fetchCountries(countryValue)
   .then(country => {
     console.log(country);
@@ -32,21 +37,18 @@ createMarkup(country);
 })
 .catch(error => {
     Notify.failure("Oops, there is no country with that name")
-    console.log(error);
-})
+    })
 }
-
-
+  
 
 function createMarkup(data) {
 if(data.length === 1) {
     const markupInfo = createCountryInfo(data);
     countryWrapperEl.innerHTML = markupInfo;
-    countryListEl.innerHTML = '';
+    
 } else {
     const markupList = createCounrtyList(data);
     countryListEl.innerHTML = markupList;
-    countryWrapperEl.innerHTML = '';
 }
 };
 
